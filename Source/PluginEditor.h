@@ -2,6 +2,7 @@
 
 #include "PluginProcessor.h"
 #include "Square.h"
+#include "juce_gui_basics/juce_gui_basics.h"
 
 //==============================================================================
 class AudioPluginAudioProcessorEditor final : public juce::AudioProcessorEditor
@@ -21,6 +22,8 @@ private:
     Square square;
 
     juce::Slider frequencySlider;
+    juce::TextButton playButton;
+    juce::Label frequencyLabel {"FrequencyLabel", "Frequency"};
 
     AudioPluginAudioProcessor& processorRef;
 

@@ -1,5 +1,7 @@
 #include "PluginProcessor.h"
+#include "juce_events/juce_events.h"
 #include "juce_graphics/juce_graphics.h"
+#include "juce_gui_basics/juce_gui_basics.h"
 #include "PluginEditor.h"
 
 //==============================================================================
@@ -9,8 +11,30 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     juce::ignoreUnused (processorRef);
 
     // addAndMakeVisible(square);
+
     frequencySlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+    frequencySlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
+    frequencySlider.setRange(0.0f, 1.0f, 0.01f);
     addAndMakeVisible(frequencySlider);
+
+    playButton.setButtonText("Play");
+    playButton.setToggleState(true, juce::NotificationType::dontSendNotification); 
+    playButton.setClickingTogglesState(true);
+
+    playButton.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colours::forestgreen);
+    playButton.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colours::rebeccapurple);
+
+    playButton.onClick = [this]()
+    {
+        // change state of the button when it is clicked
+        const bool isPlaying = playButton.getToggleState();
+        playButton.setButtonText(isPlaying ? "Playing": "Bypassed");
+    };
+    addAndMakeVisible(playButton);
+
+    frequencyLabel.setColour(juce::Label::ColourIds::outlineColourId, juce::Colours::wheat);
+    addAndMakeVisible(frequencyLabel);
+
 
     setSize (1000, 600);
 }
@@ -36,5 +60,7 @@ void AudioPluginAudioProcessorEditor::resized()
     // subcomponents in your editor..
 
     // square.setBounds(50, 250, 300, 100);
-    frequencySlider.setBounds(400, 200, 200, 200);
+    frequencyLabel.setBounds (getWidth() / 2 - 50, getHeight() / 2 - 120, 100, 20);
+    frequencySlider.setBounds(450, 200, 100, 200);
+    playButton.setBounds(450, 450, 100, 30);
 }
