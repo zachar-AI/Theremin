@@ -1,5 +1,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "juce_audio_processors/juce_audio_processors.h"
+#include "juce_audio_processors_headless/juce_audio_processors_headless.h"
 
 //==============================================================================
 AudioPluginAudioProcessor::AudioPluginAudioProcessor()
@@ -172,3 +174,19 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new AudioPluginAudioProcessor();
 }
+
+juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::createParameters()
+{
+    return
+    {
+        std::make_unique <juce::AudioParameterFloat>
+        ( 
+            "freqHz", 
+            "Frequency", 
+            20.0f, 
+            15'000.0f,  
+            110.0f
+        )
+    };
+    
+}  
