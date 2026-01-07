@@ -9,9 +9,9 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     juce::ignoreUnused (processorRef);
 
     // addAndMakeVisible(square);
+    frequencySlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+    addAndMakeVisible(frequencySlider);
 
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
     setSize (1000, 600);
 }
 
@@ -25,9 +25,9 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (juce::Colours::black);
 
-    g.setColour (juce::Colours::red);
-    g.setFont (30.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    // g.setColour (juce::Colours::red);
+    // g.setFont (30.0f);
+    // g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void AudioPluginAudioProcessorEditor::resized()
@@ -36,4 +36,5 @@ void AudioPluginAudioProcessorEditor::resized()
     // subcomponents in your editor..
 
     // square.setBounds(50, 250, 300, 100);
+    frequencySlider.setBounds(400, 200, 200, 200);
 }
