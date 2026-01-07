@@ -32,7 +32,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     };
     addAndMakeVisible(playButton);
 
-    frequencyLabel.setColour(juce::Label::ColourIds::outlineColourId, juce::Colours::wheat);
+    // frequencyLabel.setColour(juce::Label::ColourIds::outlineColourId, juce::Colours::wheat);
+    frequencyLabel.setJustificationType(juce::Justification::centred);    
     addAndMakeVisible(frequencyLabel);
 
 
