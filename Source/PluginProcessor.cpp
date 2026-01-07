@@ -137,6 +137,10 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
+    float freq = state.getRawParameterValue("freqHz")->load();
+    
+    sineWave.setFrequency(freq);
+
     // process audio in buffer loop
     sineWave.process(buffer);
 }
@@ -177,15 +181,17 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 
 juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::createParameters()
 {
+    juce::NormalisableRange<float> frequencyRange(20.f, 15'000.0f);
+    frequencyRange.setSkewForCentre(1000.f);
+
     return
     {
         std::make_unique <juce::AudioParameterFloat>
         ( 
             "freqHz", 
-            "Frequency", 
-            20.0f, 
-            15'000.0f,  
-            110.0f
+            "Frequency",
+            frequencyRange, 
+            440.0f
         )
     };
     

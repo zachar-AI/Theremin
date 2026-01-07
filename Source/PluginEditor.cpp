@@ -6,7 +6,7 @@
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
-    : AudioProcessorEditor (&p), processorRef (p)
+    : AudioProcessorEditor (&p), processorRef (p), freqSliderAttachment(processorRef.getState(), "freqHz", frequencySlider)
 {
     juce::ignoreUnused (processorRef);
 
@@ -14,7 +14,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
     frequencySlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     frequencySlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    frequencySlider.setRange(0.0f, 1.0f, 0.01f);
+    // frequencySlider.setRange(0.0f, 1.0f, 0.01f);
     addAndMakeVisible(frequencySlider);
 
     playButton.setButtonText("Play");
