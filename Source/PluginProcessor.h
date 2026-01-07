@@ -46,6 +46,7 @@ public:
 private:
     SineWave sineWave;    
 
+    juce::AudioProcessorValueTreeState state;
     juce::AudioProcessorValueTreeState::ParameterLayout createParameters(); 
 
     //==============================================================================
