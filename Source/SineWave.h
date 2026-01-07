@@ -14,10 +14,9 @@ public:
   void setFrequency(const float frequency) { smoothedFreq_.setTargetValue(frequency); }
 
 private:
-  std::vector<float> currentTime_;
+  std::vector<float> phases_;
   float amplitude_ = 0.5f;
   float sampleRate_ = 0.0f;
-  float timeIncrement_ = 0.0f;
   static constexpr float doublePi = 2.0f * std::numbers::pi_v<float>;
   juce::SmoothedValue<float, juce::ValueSmoothingTypes::Multiplicative> smoothedFreq_;
 };
