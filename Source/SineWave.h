@@ -1,6 +1,7 @@
 #pragma once
 
 #include <juce_audio_basics/juce_audio_basics.h>
+#include <numbers>
 
 class SineWave
 {
@@ -13,9 +14,10 @@ public:
   void setFrequency(const float frequency) {frequency_ = frequency;}
 
 private:
-  float amplitude_ = 0.5f;
+  std::vector<float> currentTime_;
   float frequency_ = 50.0f;
+  float amplitude_ = 0.5f;
   float sampleRate_ = 0.0f;
   float timeIncrement_ = 0.0f;
-  std::vector<float> currentTime_;
+  static constexpr float doublePi = 2.0f * std::numbers::pi_v<float>;
 };
