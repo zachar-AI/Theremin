@@ -54,11 +54,20 @@ juce_add_plugin(${PROJECT_NAME}
         PRODUCT_NAME "ThereminEmulator"        
 )
 
+# Create a binary version of bkg img
+juce_add_binary_data(ThereminBinaryData
+        SOURCES
+                Resources/theremin.jpg
+)
+
 # How we want our SourceFiles to appear in our IDE
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SourceFiles})
 
 # Make the SourceFiles buildable
 target_sources(${PROJECT_NAME} PRIVATE ${SourceFiles})
+
+# link binary bkg img to to target
+target_link_libraries(${PROJECT_NAME} PRIVATE ThereminBinaryData)
 
 # These are some toggleable options from the JUCE CMake API
 target_compile_definitions(${PROJECT_NAME}
