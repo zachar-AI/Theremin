@@ -49,7 +49,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
 
 
-    setSize (1000, 600);
+    setSize (710, 947);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
@@ -74,7 +74,7 @@ void AudioPluginAudioProcessorEditor::resized()
 
     // square.setBounds(50, 250, 300, 100);
     // frequencyLabel.setBounds (getWidth() / 2 - 50, getHeight() / 2 - 120, 100, 20);
-    frequencySlider.setBounds(600, 300, 100, 100);
-    playButton.setBounds(450, 450, 100, 30);
-    amplitudeSlider.setBounds(450, 200, 100, 200);
+    frequencySlider.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 50, 100, 100);
+    playButton.setBounds(getWidth() / 2 - 50, getHeight() / 2 + 100, 100, 30);
+    amplitudeSlider.setBounds(getWidth() / 2 - 300, getHeight() / 2 - 100, 100, 200);
 }
