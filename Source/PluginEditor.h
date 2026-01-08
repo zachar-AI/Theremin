@@ -33,5 +33,7 @@ private:
     juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
     juce::AudioProcessorValueTreeState::SliderAttachment ampSliderAttachment;
 
+    juce::Image backgroundImage;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

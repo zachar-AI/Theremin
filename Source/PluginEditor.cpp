@@ -2,6 +2,7 @@
 #include "juce_events/juce_events.h"
 #include "juce_graphics/juce_graphics.h"
 #include "juce_gui_basics/juce_gui_basics.h"
+#include "BinaryData.h"
 #include "PluginEditor.h"
 
 //==============================================================================
@@ -14,6 +15,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 {
     juce::ignoreUnused (processorRef);
 
+    // Load bkg img from binary data
+    backgroundImage = juce::ImageCache::getFromMemory(BinaryData::theremin_jpg, BinaryData::theremin_jpgSize);
 
     // freq slider setup
     frequencySlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
@@ -59,12 +62,14 @@ AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 //==============================================================================
 void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (juce::Colours::black);
-
-    // g.setColour (juce::Colours::red);
-    // g.setFont (30.0f);
-    // g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    if (backgroundImage.isValid())
+    {
+        g.drawImage(backgroundImage, getLocalBounds().toFloat(), juce::RectanglePlacement::stretchToFit);
+    }
+    else
+    {
+        g.fillAll (juce::Colours::black);
+    }
 }
 
 void AudioPluginAudioProcessorEditor::resized()
@@ -74,7 +79,7 @@ void AudioPluginAudioProcessorEditor::resized()
 
     // square.setBounds(50, 250, 300, 100);
     // frequencyLabel.setBounds (getWidth() / 2 - 50, getHeight() / 2 - 120, 100, 20);
-    frequencySlider.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 50, 100, 100);
+    frequencySlider.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 50, 200, 100);
     playButton.setBounds(getWidth() / 2 - 50, getHeight() / 2 + 100, 100, 30);
     amplitudeSlider.setBounds(getWidth() / 2 - 300, getHeight() / 2 - 100, 100, 200);
 }
