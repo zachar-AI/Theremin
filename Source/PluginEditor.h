@@ -1,7 +1,6 @@
 #pragma once
 
 #include "PluginProcessor.h"
-#include "Square.h"
 #include "juce_audio_processors/juce_audio_processors.h"
 #include "juce_gui_basics/juce_gui_basics.h"
 
@@ -19,8 +18,6 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-
-    Square square;
 
     juce::Slider frequencySlider;
     juce::Slider amplitudeSlider;
