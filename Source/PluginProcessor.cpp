@@ -149,7 +149,8 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     const bool shouldBePlaying = static_cast<bool>(playParam->load());
 
     sineWave.setFrequency(freq);
-    sineWave.setAmplitude(shouldBePlaying ? amp : 0.0f);
+    sineWave.setAmplitude(amp);
+    sineWave.setPower(shouldBePlaying);
 
     // process audio in buffer loop
     sineWave.process(buffer);

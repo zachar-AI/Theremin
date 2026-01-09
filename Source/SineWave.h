@@ -12,6 +12,7 @@ public:
   [[nodiscard]] float getFrequency() { return smoothedFreq_.getNextValue(); }
   void setAmplitude(const float amplitude) { smoothedAmp_.setTargetValue(amplitude); }
   void setFrequency(const float frequency) { smoothedFreq_.setTargetValue(frequency); }
+  void setPower(const bool powerOn) {smoothedPower_.setTargetValue(powerOn ? 1.0f : 0.0f); }
 
 private:
   std::vector<float> phases_;
@@ -19,4 +20,5 @@ private:
   static constexpr float doublePi = 2.0f * std::numbers::pi_v<float>;
   juce::SmoothedValue<float, juce::ValueSmoothingTypes::Multiplicative> smoothedFreq_;
   juce::SmoothedValue<float, juce::ValueSmoothingTypes::Linear> smoothedAmp_;
+  juce::SmoothedValue<float, juce::ValueSmoothingTypes::Linear> smoothedPower_;
 };
